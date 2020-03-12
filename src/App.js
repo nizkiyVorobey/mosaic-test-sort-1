@@ -1,36 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getUsers } from './api/getUsers';
+import { UserList } from './components/UserList/UserList';
+import { SelectSort } from './components/SelectSort/SelectSort';
 import './App.css';
 
-import Carousel from './components/Carousel';
+function App() {
+  const [userSorted, setUserSorted] = useState([...getUsers]);
 
-class App extends React.Component {
-  state = {
-    images: [
-      './img/1.png',
-      './img/2.png',
-      './img/3.png',
-      './img/4.png',
-      './img/5.png',
-      './img/6.png',
-      './img/7.png',
-      './img/8.png',
-      './img/9.png',
-      './img/10.png',
-    ],
-  };
+  return (
+    <div className="App">
+      <h1>Mosaic test sort!</h1>
 
-  render() {
-    const { images } = this.state;
+      <SelectSort setUserSorted={setUserSorted} userList={userSorted} />
 
-    return (
-      <div className="App">
-        {/* eslint-disable-next-line */}
-        <h1>Carousel with {images.length} images</h1>
-
-        <Carousel />
-      </div>
-    );
-  }
+      <table className="user-list">
+        <thead className="user-list-title">
+          <tr className="user-list-title-item-row">
+            <td className="user-list-title-item-column">Name</td>
+            <td className="user-list-title-item-column">Surname</td>
+            <td className="user-list-title-item-column">Email</td>
+            <td className="user-list-title-item-column">phonenumber</td>
+            <td className="user-list-title-item-column">Birthday</td>
+            <td className="user-list-title-item-column">company</td>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            userSorted.map(user => <UserList user={user} key={user.company} />)
+          }
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default App;

@@ -1,1 +1,26 @@
+.App {
+  text-align: center;
+}
 
+.user-list {
+  border-collapse: collapse;
+  margin: 80px auto auto;
+  padding: 20px;
+}
+
+.user-list-title {
+  background-color: lightseagreen;
+}
+
+.user-list-title-item-row {
+  border: 1px solid black;
+}
+
+.user-list-title-item-column {
+  padding: 10px 0;
+}
+
+.user-item {
+  border: 1px solid black;
+  padding: 10px 20px;
+}
